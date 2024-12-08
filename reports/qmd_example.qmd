@@ -1,15 +1,19 @@
 ---
 title: "DSCI 310: Historical Horse Population in Canada"
 author: "Tiffany Timbers & Jordan Bourak"
-toc: true
-toc-depth: 2
+format: 
+    html:
+        toc: true
+        self-contained: true
+    pdf:
+        toc: true
+        fig-pos: "H"
 editor: source
 bibliography: references.bib
-execute:
-  echo: false
 ---
 
 ```{python}
+#| echo: false
 import pandas as pd
 from IPython.display import Markdown, display
 from tabulate import tabulate
@@ -22,8 +26,7 @@ between 1906 and 1972 for each province.
 
 # Data
 
-Horse population data were sourced from the 
-Government of Canada's Open Data website [@horses1; @horses2]
+Horse population data were sourced from the Government of Canada's Open Data website [@horses1;@horses2]
 
 # Methods
 
@@ -35,7 +38,7 @@ as well as Quarto [@Allaire_Quarto_2022].
 
 # Results
 
-![Horse populations for all provinces in Canada from 1906 - 1972.](../results/horse_pops_plot.png){#fig-horse-pop width=70%}
+![Horse populations for all provinces in Canada from 1906 - 1972.](../results/horse_pops_plot.png){#fig-horse-pop}
 
 We can see from @fig-horse-pop that Ontario, Saskatchewan and Alberta 
 have had the highest horse populations in Canada. 
@@ -53,7 +56,7 @@ We present the standard deviations in @tbl-standard-deviation.
 ```{python}
 #| echo: false
 #| label: tbl-standard-deviation
-#| tbl-cap: Standard deviation of historical (1906-1972) horse populations for each Canadian province
+#| tbl-cap: Standard deviation of historical (1906-1972) horse populations for each Canadian province.
 horses_sd_table = pd.read_csv("../results/horses_sd.csv")
 largest_sd = horses_sd_table['Province'].values[0]
 Markdown(horses_sd_table.to_markdown(index = False))
@@ -63,13 +66,13 @@ Note that we define standard deviation (of a sample) (@eq-standard-deviation) as
 
 $$s = \sqrt{\frac{\sum_{i=1}^N (x_i - \overline{x})^2}{N-1} }$$ {#eq-standard-deviation}
 
-Additionally, note that in @tbl-standard-deviation we consider the sample standard deviation of the number of horses during the same time span as Figure 1.
+Additionally, note that in @tbl-standard-deviation we consider the sample standard deviation of the number of horses during the same time span as @fig-horse-pop.
 
 {{< pagebreak >}}
 
-![Horse populations for the province with the largest standard deviation](../results/horse_pops_plot_largest_sd.png){#fig-horse-sd width=60%}
+![Horse populations for the province with the largest standard deviation](../results/horse_pops_plot_largest_sd.png){#fig-horse-dev width=60%}
 
-In @fig-horse-sd we zoom in and look at the province of `{python} largest_sd`, which had the largest spread of values in terms of standard deviation.
+In @fig-horse-dev we zoom in and look at the province of `{python} largest_sd`, which had the largest spread of values in terms of standard deviation.
 
 {{< pagebreak >}}
 
